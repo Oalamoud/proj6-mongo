@@ -37,15 +37,19 @@
   {% endif %}
 {% endwith %}
 
-<form method="PUT" action="_create">
-<div class="row">
-    <div class="col-md-2">
-    <input type="text" class="form-control"
-     name="Date" value=""/>
-  </div>
+<form method="POST" action="_create_new_memo">
+<div  class="row">
+    <div class="col-md-10">
+    <input type="date" class="form-control"
+     name="date" value=""/>
+  </div><br />
   <div class="col-md-10">
-    <input type="text" class="form-control"
-      name="Memo" value="Memo" />
+    <textarea class="form-control"
+        name="text"  >
+    </textarea>
+</div><br />
+  <div class="col-md-10">
+    <input type="submit" value="Create New Memo" />
   </div>
  </div>
 </form>

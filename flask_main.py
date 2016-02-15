@@ -62,12 +62,12 @@ def index():
   return flask.render_template('index.html')
 
 
-# We don't have an interface for creating memos yet
-# @app.route("/create")
-# def create():
-#     app.logger.debug("Create")
-#     return flask.render_template('create.html')
 
+
+@app.route("/create")
+def create():
+    app.logger.debug("Create")
+    return flask.render_template('create.html')
 
 @app.errorhandler(404)
 def page_not_found(error):
@@ -81,6 +81,25 @@ def page_not_found(error):
 # Functions used within the templates
 #
 #################
+
+
+
+@app.route('/_create_new_memo',methods=['POST', 'GET'])
+def create_new_memo():
+    if request.method=='POST':
+        record= { 'type': 'dated_memo',
+            'date': request.form['date'],
+            'text': request.form['text']
+            }
+        collection.insert(record)
+        app.logger.debug(record)
+        app.logger.debug(" inserted")
+        return flask.render_template('index.html') 
+    else:
+        app.logger.debug('New memo form is incomplete')
+        return flask.render_template('create.html')
+
+        
 
 # NOT TESTED with this application; may need revision 
 #@app.template_filter( 'fmtdate' )
