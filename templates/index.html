@@ -45,8 +45,12 @@
   <div class="col-md-2">
     {{ memo.date | humanize }}
   </div>
-  <div class="col-md-10">
+  <div class="col-md-9">
     {{ memo.text }}
+  </div>
+  <div class='col-md-1'>
+      <!-- Delete is not working it is just here I gave up before I set it up -->
+      <input class="delete" type="button" value="delete">
   </div>
   </div> <!-- row -->
   </div> <!-- memo -->
