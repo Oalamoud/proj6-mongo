@@ -25,6 +25,9 @@ import arrow # Replacement for datetime, based on moment.js
 import datetime # But we may still need time
 from dateutil import tz  # For interpreting local times
 
+# Srting handling
+from operator import itemgetter
+
 # Mongo database
 from pymongo import MongoClient
 
@@ -147,7 +150,7 @@ def get_memos():
         record['date'] = arrow.get(record['date']).isoformat()
         del record['_id']
         records.append(record)
-    return records 
+    return sorted(records, key=itemgetter('date'))  
 
 
 if __name__ == "__main__":
