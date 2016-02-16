@@ -97,10 +97,10 @@ def create_new_memo():
         collection.insert(record)
         app.logger.debug(record)
         app.logger.debug(" inserted")
-        return flask.render_template('index.html') 
+        return flask.redirect(url_for('index'))
     else:
         app.logger.debug('New memo form is incomplete')
-        return flask.render_template('create.html')
+        return flask.redirect(url_for('create'))
 
         
 
@@ -143,7 +143,8 @@ def humanize_arrow_date( date ):
 def get_memos():
     """
     Returns all memos in the database, in a form that
-    can be inserted directly in the 'session' object.
+    can be inserted directly in the 'session' object
+    sorted by date.
     """
     records = [ ]
     for record in collection.find( { "type": "dated_memo" } ):
